@@ -1,0 +1,89 @@
+/* Container for the calculator */
+.container {
+    width: 575px;
+    height: 825px;
+    background-color: #F4F7FA; /* Light grayish background */
+    padding-left: 30px;
+    border-radius: 8px; /* Soft rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+/* Input fields (height and weight) */
+#height, #weight {
+    width: 150px;
+    height: 35px;
+    margin-top: 30px;
+    padding: 5px;
+    border-radius: 5px; /* Rounded corners for inputs */
+    border: 2px solid #B0BEC5; /* Subtle border */
+    font-size: 16px;
+    background-color: #FFFFFF; /* White background for inputs */
+}
+
+/* Weight guide section */
+#weight-guide {
+    margin-left: 75px;
+    margin-top: 25px;
+    font-size: 18px;
+    color: #607D8B; /* Muted blue-gray for instructions */
+}
+
+/* Results and messages section */
+#results {
+    font-size: 35px;
+    margin-left: 90px;
+    margin-top: 20px;
+    color: #4CAF50; /* Calming green for results */
+}
+
+/* Deficit/Surplus message color */
+#message {
+    font-size: 28px;
+    margin-left: 90px;
+    margin-top: 20px;
+    color: #212121; /* Default text color */
+    font-weight: bold; /* Bold for emphasis */
+    line-height: 1.4;
+    text-align: center;
+}
+
+/* Red color for weight gain or loss */
+#message span {
+    color: #FF5733; /* Red for deficit/surplus values */
+}
+
+/* Button */
+button {
+    width: 150px;
+    height: 45px;
+    margin-left: 90px;
+    margin-top: 25px;
+    background-color: #4CAF50; /* Green background */
+    color: #FFFFFF; /* White text for contrast */
+    font-size: 18px;
+    border: 2px solid #388E3C; /* Darker green border */
+    border-radius: 5px; /* Rounded button */
+    transition: background-color 0.3s, transform 0.2s ease; /* Smooth hover effect */
+}
+
+button:hover {
+    background-color: #388E3C; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+/* Heading */
+h1 {
+    padding-left: 15px;
+    padding-top: 25px; 
+    font-size: 32px;
+    color: #212121; /* Dark gray for text */
+}
+
+/* Overall Form */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}

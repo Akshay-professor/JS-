@@ -1,0 +1,94 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background: linear-gradient(45deg, #6a11cb, #2575fc); /* Cool gradient background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+
+/* Navigation */
+nav {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 14px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #000;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: #ff69b4; /* Pink hover effect */
+}
+
+/* Centering the Clock */
+.center {
+    text-align: center;
+}
+
+/* Banner */
+#banner {
+    font-size: 24px;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #f8f8f8;
+}
+
+/* Clock Styling */
+#clock {
+    font-size: 100px;
+    font-family: 'Orbitron', sans-serif; /* Modern futuristic font */
+    letter-spacing: 5px;
+    color: #f8f8f8;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.4), 0 0 30px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 255, 255, 0.2); /* Glowing effect */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    #clock {
+        font-size: 80px; /* Smaller font size on mobile */
+    }
+    #banner {
+        font-size: 18px;
+    }
+}
+
+/* Footer Style */
+#footer {
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+#footer span {
+    font-size: 20px;
+    font-family: 'Orbitron', sans-serif; /* Same font as clock for a modern vibe */
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.3), 0 0 15px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 0, 0, 0.8); /* Red glowing effect */
+    letter-spacing: 2px;
+}
+
+#footer span:hover {
+    color: #ff69b4; /* Pink color on hover */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 0, 0, 1); /* Enhanced glow on hover */
+}
+

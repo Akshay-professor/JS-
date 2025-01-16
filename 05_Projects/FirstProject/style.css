@@ -1,0 +1,43 @@
+html {
+    margin: 0;
+  }
+  
+  span {
+    display: block;
+  }
+  .canvas {
+    margin: 100px auto 100px;
+    width: 80%;
+    text-align: center;
+  }
+  .button {
+    width: 100px;
+    height: 100px;
+    border: solid black 2px;
+    display: inline-block;
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition for hover effects */
+  }
+  
+  .button:hover {
+    transform: scale(1.1); /* Slightly enlarge the button */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add a shadow effect */
+    cursor: pointer; /* Change cursor to pointer */
+  }
+  
+  /* Retain the individual colors */
+  #grey {
+    background: grey;
+  }
+  
+  #white {
+    background: white;
+  }
+  
+  #blue {
+    background: blue;
+  }
+  
+  #yellow {
+    background: yellow;
+  }
+  
