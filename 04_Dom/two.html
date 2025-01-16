@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Learning</title>
+    <style> 
+        .bg-black{
+            background-color: #212121;
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="bg-black">
+    <script>
+        const div = document.createElement('div');
+        console.log(div);
+        // div.innerText = "chai aur code"
+        div.className ="main";
+        div.id = Math.round(Math.random()*10 + 1);
+        div.setAttribute("title", "generated title");
+        div.style.backgroundColor = "red";
+        const addText = document.createTextNode("chai aur code");
+        div.appendChild(addText);
+        document.body.appendChild(div);
+    </script>
+    
+</body>
+</html>
+
+<!-- notes
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Basics</title>
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="main-title">Welcome to DOM Learning</h1>
+    <p class="description">Learning DOM manipulation is fun and powerful!</p>
+    <ul>
+        <li class="item">HTML</li>
+        <li class="item">CSS</li>
+        <li class="item">JavaScript</li>
+    </ul>
+    <div class="container">
+        <p>DOM is amazing.</p>
+        <p>Let's master it step by step.</p>
+    </div>
+    <script>
+        // DOM Introduction
+        // The DOM (Document Object Model) is a programming interface for HTML and XML documents.
+        // It represents the structure of a document as a tree of nodes.
+
+        // Example: Accessing the DOM
+        console.log(document); // Outputs the entire document as a JavaScript object
+        console.log(document.body); // Accesses the body of the document
+
+        // -----------------
+        // DOM Selectors
+        // -----------------
+
+        // 1. Using getElementById (returns a single element)
+        const title = document.getElementById('main-title');
+        console.log(title); // <h1 id="main-title">Welcome to DOM Learning</h1>
+        title.style.color = "blue"; // Changes the text color of the title to blue
+
+        // 2. Using getElementsByClassName (returns an HTMLCollection)
+        const items = document.getElementsByClassName('item');
+        console.log(items); // HTMLCollection [li.item, li.item, li.item]
+        items[0].style.fontWeight = "bold"; // Accessing the first element in the collection
+
+        // 3. Using getElementsByTagName (returns an HTMLCollection)
+        const paragraphs = document.getElementsByTagName('p');
+        console.log(paragraphs); // HTMLCollection [p, p, p]
+        paragraphs[1].classList.add('highlight'); // Adds a highlight class to the second paragraph
+
+        // 4. Using querySelector (returns the first matching element)
+        const firstItem = document.querySelector('.item');
+        console.log(firstItem); // <li class="item">HTML</li>
+
+        // 5. Using querySelectorAll (returns a NodeList of matching elements)
+        const allItems = document.querySelectorAll('.item');
+        console.log(allItems); // NodeList [li.item, li.item, li.item]
+        allItems.forEach(item => item.style.textTransform = "uppercase"); // Loops through NodeList
+
+        // -----------------
+        // HTMLCollection vs NodeList
+        // -----------------
+
+        // HTMLCollection:
+        // - Live collection (updates automatically when DOM changes)
+        // - Accessed using `getElementsByClassName` or `getElementsByTagName`
+        // - Can only be looped using a for loop
+        // Example:
+        const containerDiv = document.getElementsByClassName('container')[0];
+        const newParagraph = document.createElement('p');
+        newParagraph.textContent = "Dynamically added paragraph.";
+        containerDiv.appendChild(newParagraph);
+        console.log(paragraphs); // Updates to include the new paragraph (HTMLCollection is live)
+
+        // NodeList:
+        // - Static collection (doesn't update automatically when DOM changes)
+        // - Accessed using `querySelectorAll`
+        // - Can be looped using forEach
+        // Example:
+        const staticParagraphs = document.querySelectorAll('p');
+        console.log(staticParagraphs); // Will not include the dynamically added paragraph
+
+        // -----------------
+        // Common Interview Questions
+        // -----------------
+
+        // Q1. What is the difference between HTMLCollection and NodeList?
+        // Answer: 
+        // - HTMLCollection is live and updates automatically with DOM changes. 
+        // - NodeList is static and doesn't reflect changes in the DOM.
+
+        // Q2. What is the difference between querySelector and querySelectorAll?
+        // Answer:
+        // - querySelector returns the first matching element.
+        // - querySelectorAll returns all matching elements as a NodeList.
+
+        // Q3. Why doesn't forEach work with HTMLCollection?
+        // Answer: 
+        // - forEach is a method available for NodeList and arrays, not for HTMLCollection.
+
+        // Q4. What happens if querySelector doesn't find a matching element?
+        // Answer:
+        // - It returns `null`.
+
+        // Q5. How can you convert an HTMLCollection into an array?
+        // Answer:
+        // - Use `Array.from()` or the spread operator `[...collection]`.
+        const arrayItems = Array.from(items);
+        console.log(arrayItems); // Converts HTMLCollection to an array
+
+        // -----------------
+        // Tricky Scenario
+        // -----------------
+        // Q: Why doesn't dynamically added element show up in querySelectorAll but does in getElementsByClassName?
+        // Answer:
+        // - querySelectorAll creates a static NodeList. Dynamically added elements are not included.
+        // - getElementsByClassName returns a live HTMLCollection, so it updates automatically.
+
+        // Example:
+        console.log(paragraphs.length); // Includes the dynamically added paragraph
+        console.log(staticParagraphs.length); // Does not include the dynamically added paragraph
+    </script>
+</body>
+</html>
+ -->
