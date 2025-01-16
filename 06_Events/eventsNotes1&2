@@ -1,0 +1,191 @@
+// Chapter 1: JavaScript Events - Hinglish Guide
+
+// 1. What are Events?
+// Event ek action hai jo browser ya user ke interaction se hota hai. Jaise user ka click karna, form submit karna, etc.
+
+// Event handling se hum browser ko batate hain ki kis action pe kya hona chahiye.
+
+// Example: Button pe click hone pe alert box dikhana.
+
+const button = document.querySelector('button');
+button.addEventListener('click', function() {
+    alert('Button was clicked!');
+});
+
+
+// 2. Types of Events:
+//  - Mouse Events
+//  - Keyboard Events
+//  - Form Events
+//  - Focus Events
+//  - Window Events
+
+// Example of Mouse Events:
+const box = document.querySelector('.box');
+// Mouseover event jab mouse box ke upar hover karega.
+box.addEventListener('mouseover', function() {
+    box.style.backgroundColor = 'red'; // Box ka color red ho jayega jab mouse over hoga
+});
+box.addEventListener('mouseout', function() {
+    box.style.backgroundColor = ''; // Box ka color reset ho jayega jab mouse box se bahar jayega
+});
+
+// Example of Keyboard Events:
+const inputField = document.querySelector('#username');
+inputField.addEventListener('keydown', function(event) {
+    console.log('You pressed: ' + event.key); // Jo key press hoti hai, uska name show karega
+});
+
+// Example of Form Events (Form submit):
+const form = document.querySelector('form');
+form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Default action ko prevent karega, form page ko reload hone se rokega
+    alert('Form submitted!');
+});
+
+// 3. Event Listeners:
+// Event listener ek function hai jo specific event par execute hota hai.
+// Hum event listeners ko multiple elements par apply kar sakte hain.
+
+// Example: Multiple buttons par click event listener apply karna
+const buttons = document.querySelectorAll('button');
+buttons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        alert('Button clicked: ' + button.textContent);
+    });
+});
+
+// 4. Inline Event Handlers vs Event Listeners:
+// Inline Event Handler: HTML mein directly event define karna, jaise: <button onclick="alert('Clicked!')">
+// Event Listeners: JavaScript mein event handler ko define karna. Event listener is preferred.
+
+// Inline example:
+<button onclick="alert('Button clicked!')">Click Me</button>
+
+// Event Listener example:
+const button2 = document.querySelector('#button2');
+button2.addEventListener('click', function() {
+    alert('Button clicked using Event Listener!');
+});
+
+// 5. Event Flow: Bubbling and Capturing
+// Event Flow ka matlab hai ki event kaise propagate hota hai DOM mein. Do types hain:
+//  - Bubbling (default) - Event target element se root tak bubble karta hai.
+//  - Capturing - Event root se target element tak capture hota hai.
+
+// Example for Bubbling (default):
+document.body.addEventListener('click', function() {
+    console.log('Body clicked (Bubbling)');
+});
+
+const div = document.querySelector('.container');
+div.addEventListener('click', function() {
+    console.log('Div clicked (Bubbling)');
+}, false); // False means bubbling (default phase)
+
+// Example for Capturing (set true):
+document.body.addEventListener('click', function() {
+    console.log('Body clicked (Capturing)');
+}, true); // True means capturing phase
+
+// 6. Removing Event Listeners:
+// Agar aapko event listener ko remove karna hai to removeEventListener ka use karte hain.
+// Remove listener se hum unnecessary events ko rok sakte hain.
+
+const handleClick = function() {
+    console.log('Button clicked!');
+};
+
+button.addEventListener('click', handleClick); // Add event listener
+button.removeEventListener('click', handleClick); // Remove event listener
+
+// 7. Event Object:
+// Jab bhi event trigger hota hai, ek event object create hota hai jo event ke baare mein details deta hai.
+// Jaise kis element pe click hua, kaunsi key press hui, mouse ka position kya tha, etc.
+
+// Example: Event object ka use karna
+button.addEventListener('click', function(event) {
+    console.log('Event Target: ' + event.target); // Jo element pe click hua
+    console.log('Event Type: ' + event.type); // Event ka type (click)
+    console.log('Mouse X: ' + event.clientX); // Mouse ka horizontal position
+    console.log('Mouse Y: ' + event.clientY); // Mouse ka vertical position
+});
+
+// 8. Event Delegation:
+// Event Delegation ek technique hai jisme hum parent element par event listener apply karte hain aur event target element ko check karte hain.
+// Yeh technique bahut useful hai jab dynamic content ho.
+
+document.querySelector('.parent').addEventListener('click', function(event) {
+    if (event.target && event.target.matches('button')) {
+        alert('Button clicked!');
+    }
+});
+
+// 9. Event Propagation: Stop Propagation
+// Agar aap chahte hain ki event propagate na ho (bubbling ya capturing phase mein), to aap event.stopPropagation() use kar sakte hain.
+
+// Example: Stop event propagation
+document.querySelector('button').addEventListener('click', function(event) {
+    event.stopPropagation(); // Event ko stop karega bubble hone se
+    alert('Button clicked!');
+});
+
+// 10. Touch Events (Mobile Specific):
+// Touch events ko mobile devices par use kiya jata hai. Ye events mouse events jaise kaam karte hain, lekin touch ke liye specific hote hain.
+
+// Example: Touchstart event:
+const touchArea = document.querySelector('.touch-area');
+touchArea.addEventListener('touchstart', function() {
+    alert('Touch started!');
+});
+
+// 11. Mouse Wheel Event:
+// Mouse wheel ko track karne ke liye 'wheel' event ka use hota hai.
+
+// Example: Wheel event
+document.addEventListener('wheel', function(event) {
+    console.log('Wheel scrolled!');
+});
+
+// 12. Focus and Blur Events:
+// Focus tab hota hai jab koi element input field mein focus karta hai.
+// Blur tab hota hai jab focus remove hota hai.
+
+// Example: Focus and Blur Events
+const inputField = document.querySelector('#input-field');
+inputField.addEventListener('focus', function() {
+    console.log('Input field focused!');
+});
+inputField.addEventListener('blur', function() {
+    console.log('Input field lost focus!');
+});
+
+// 13. Handling Multiple Events with a Single Function:
+// Hum ek function ko multiple events ke liye use kar sakte hain.
+// Hum `addEventListener` mein array ya comma se multiple events bhi pass kar sakte hain.
+
+const eventHandler = function() {
+    alert('Event Triggered!');
+};
+
+button.addEventListener('click', eventHandler);
+button.addEventListener('mouseover', eventHandler);
+
+// 14. Prevent Default Action:
+// Agar hum chahte hain ki event ke default behavior ko prevent karein (e.g., form submit ka reload), to hum event.preventDefault() use karte hain.
+
+form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Default form submit prevent karega
+    console.log('Form submitted without page reload!');
+});
+
+// 15. Once Option:
+// Event listener ko ek baar execute hone ke liye hum "once" option ka use karte hain. Event listener ek hi baar trigger hoga.
+
+button.addEventListener('click', function() {
+    alert('Button clicked once!');
+}, { once: true }); // Event listener sirf ek baar trigger hoga
+
+// Conclusion:
+// JavaScript mein events powerful tools hain jo humare webpages ko interactive banate hain. Hum inhe different actions aur user interactions handle karne ke liye use karte hain.
+// Event listeners, bubbling, capturing, event delegation, aur event object jaise concepts ko samajhna important hai.

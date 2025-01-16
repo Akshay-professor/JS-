@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Events</title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing Image Gallery</h2>
+    <div>
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="japan"></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="river"></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="owl"></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="prayer"></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+    </div>
+</body>
+<script>
+/*
+    ----------------------------------
+    📘 JavaScript Event Notes
+    ----------------------------------
+
+    💡 Events:
+    Events are actions or occurrences that happen in the browser, like clicking a button, typing in a field, or loading a page.
+
+    -------------------------
+    🔑 Key Event Properties:
+    -------------------------
+    1. `type`: Event type (e.g., 'click', 'keydown').
+    2. `target`: The element that triggered the event.
+    3. `currentTarget`: The element the event listener is attached to.
+    4. `defaultPrevented`: Checks if `preventDefault()` was called.
+    5. `clientX` and `clientY`: Coordinates of the event relative to the viewport.
+    6. `screenX` and `screenY`: Coordinates of the event relative to the screen.
+    7. `altKey`, `ctrlKey`, `shiftKey`: Boolean values to check if these keys were pressed.
+    8. `stopPropagation()`: Stops the event from propagating (bubbling up).
+    9. `preventDefault()`: Prevents the default action of the event (e.g., stopping a link from navigating).
+    10. `timestamp`: Time when the event occurred.
+
+    -------------------------
+    🔄 Event Bubbling:
+    -------------------------
+    - Event bubbling is the process where an event propagates from the target element to its parent elements up to the root.
+    - Example:
+      If you click on an `<img>` inside a `<div>`, the event bubbles up from `<img>` → `<div>` → `<body>` → `<html>`.
+
+    -------------------------
+    ✂️ Event Delegation:
+    -------------------------
+    - Instead of attaching listeners to individual elements, add the listener to a common parent and use the `target` property to determine the source of the event.
+    - Benefits:
+      1. Reduces memory usage.
+      2. Simplifies event management for dynamic elements.
+
+    -------------------------
+    🔥 Practical Example:
+    -------------------------
+*/
+
+// 💡 Select the `<ul>` element and add a click event listener
+document.querySelector('#images').addEventListener('click', function(e) {
+    // Log the tag name of the clicked element
+    console.log(e.target.tagName);
+
+    // Check if the clicked element is an image
+    if (e.target.tagName === 'IMG') {
+        let removeit = e.target.parentNode; // Select the `<li>` containing the image
+        removeit.remove(); // Remove the `<li>` element from the DOM
+        console.log(e.target.id); // Log the `id` of the clicked image
+    }
+});
+
+/*
+    -------------------------
+    ✍️ Code Walkthrough:
+    -------------------------
+    1. The `click` event listener is attached to the `<ul>` element (parent of all `<li>`).
+    2. When any child of `<ul>` is clicked:
+       - `e.target` gives the clicked element.
+       - The `tagName` of the clicked element is checked.
+       - If it is an `IMG`, its parent `<li>` is removed from the DOM.
+    3. This approach uses **event delegation** to handle all `<img>` clicks with a single listener.
+*/
+
+/*
+    -------------------------
+    ⚠️ Interview Questions:
+    -------------------------
+    1. **What is the difference between `target` and `currentTarget`?**
+       - `target`: The element that triggered the event.
+       - `currentTarget`: The element the event listener is attached to.
+       Example:
+       ```javascript
+       document.getElementById('images').addEventListener('click', function(e) {
+           console.log(e.target); // Clicked element
+           console.log(e.currentTarget); // The <ul> element
+       });
+       ```
+
+    2. **What happens if you don't call `stopPropagation()`?**
+       - The event will continue bubbling up to parent elements.
+
+    3. **What does `preventDefault()` do?**
+       - Prevents the default browser action. Example:
+         Stopping a link from navigating:
+         ```javascript
+         document.getElementById('google').addEventListener('click', function(e) {
+             e.preventDefault();
+             console.log('Google link clicked!');
+         });
+         ```
+
+    4. **What is the advantage of event delegation?**
+       - Handles multiple child events with a single listener.
+       - Ideal for dynamic elements that are added/removed from the DOM.
+
+    5. **Can `querySelector` handle dynamic elements?**
+       - No, it retrieves a static NodeList at the time of call. Changes in the DOM won't be reflected.
+
+    -------------------------
+    🧪 Tricky Scenarios:
+    -------------------------
+    1. **What happens if `stopPropagation()` is not called in nested events?**
+       - Both parent and child event listeners will be executed.
+
+    2. **Why doesn't `forEach` work on HTMLCollection?**
+       - HTMLCollection is not an array. Use `Array.from()` to convert it into an array.
+
+    -------------------------
+    📚 Summary:
+    -------------------------
+    - Use `event.target` to identify the clicked element.
+    - Use `stopPropagation()` to stop bubbling if necessary.
+    - Use `preventDefault()` to block default actions (like link navigation).
+    - Use event delegation for better performance and memory optimization.
+*/
+</script>
+</html>

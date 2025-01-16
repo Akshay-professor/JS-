@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Profile Card</title>
+    <style>
+        /* Body style to set the background color and align the card in the center */
+        body {
+            background-color: #212121; /* Dark background */
+            color: white; /* White text */
+            font-family: Arial, sans-serif; /* Font style */
+            display: flex; /* Use flexbox to center the profile card */
+            justify-content: center; /* Horizontally center */
+            align-items: center; /* Vertically center */
+            height: 100vh; /* Make body full height */
+        }
+
+        /* Style for the profile card */
+        .profile-card {
+            background-color: #333; /* Dark grey background for the card */
+            padding: 20px; /* Padding inside the card */
+            border-radius: 10px; /* Rounded corners */
+            width: 300px; /* Fixed width of the card */
+            text-align: center; /* Center align the content */
+        }
+
+        /* Style for the profile image */
+        .profile-card img {
+            width: 100px; /* Width of the profile image */
+            height: 100px; /* Height of the profile image */
+            border-radius: 50%; /* Make the image circular */
+        }
+
+        /* Style for the profile name */
+        .profile-card h3 {
+            margin-top: 10px; /* Add margin on top */
+            font-size: 24px; /* Larger font size for name */
+        }
+
+        /* Style for the profile details (followers and repos count) */
+        .profile-card p {
+            margin: 5px 0; /* Margin for spacing */
+            font-size: 18px; /* Font size for details */
+        }
+
+        /* Button style */
+        .btn {
+            background-color: #007bff; /* Blue background */
+            color: white; /* White text */
+            padding: 10px 20px; /* Padding inside the button */
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Rounded corners for the button */
+            cursor: pointer; /* Change cursor to pointer when hovering */
+            margin: 5px; /* Space between buttons */
+        }
+
+        /* Button hover effect */
+        .btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Profile card structure -->
+    <div class="profile-card">
+        <!-- Profile image -->
+        <img id="profile-photo" src="" alt="Profile Photo">
+        
+        <!-- Username (static text for now) -->
+        <h3 id="username">Hitesh Choudhary</h3>
+        
+        <!-- Followers count (dynamically updated) -->
+        <p id="followers-count">Followers: </p>
+        
+        <!-- Repositories count (dynamically updated) -->
+        <p id="repo-count">Repositories: </p>
+        
+        <!-- Buttons to show followers and repositories -->
+        <button class="btn" onclick="showFollowers()">Show Followers</button>
+        <button class="btn" onclick="showRepos()">Show Repositories</button>
+    </div>
+
+    <script>
+        // GitHub API URL for Hitesh Choudhary's profile
+        const RequestUrl = 'https://api.github.com/users/hiteshchoudhary';
+
+        // Create a new XMLHttpRequest object
+        const xhr = new XMLHttpRequest();
+
+        // Open the GET request to fetch the data from GitHub API
+        xhr.open('GET', RequestUrl);
+
+        // Function to handle the response from the API
+        xhr.onreadystatechange = function () {
+            // Check if the request is complete (readyState 4) and successful (status 200)
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Parse the response data (JSON) into a JavaScript object
+                const data = JSON.parse(this.responseText);
+
+                // Set the profile photo from the GitHub API response
+                document.getElementById("profile-photo").src = data.avatar_url;
+
+                // Set the followers count in the profile card
+                document.getElementById("followers-count").innerText = `Followers: ${data.followers}`;
+
+                // Set the repositories count in the profile card
+                document.getElementById("repo-count").innerText = `Repositories: ${data.public_repos}`;
+            }
+        };
+
+        // Send the request to the GitHub API
+        xhr.send();
+
+        // Function to show followers information when the "Show Followers" button is clicked
+        function showFollowers() {
+            alert(`Followers: ${document.getElementById("followers-count").innerText}`);
+        }
+
+        // Function to show repositories information when the "Show Repositories" button is clicked
+        function showRepos() {
+            alert(`Repositories: ${document.getElementById("repo-count").innerText}`);
+        }
+    </script>
+</body>
+</html>
+
+
+
+    // xhr.onreadystatechange = function(){
+    //     console.log(xhr.readyState);
+    //     if(xhr.readyState === 4){ // Use the correct comparison operator (===)
+    //         const data = JSON.parse(this.responseText);
+    //         console.log(this.responseText);   
+    //         console.log(data.info);
+    //         console.log(typeof data);
+    //     }
+    // }
